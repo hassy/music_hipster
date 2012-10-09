@@ -34,3 +34,13 @@ a:hover {color:#83be20;}
     font-size: 48pt;
     color: #c0c;
 }
+
+#listeners {
+	display: none;
+	margin-top: 50px;
+}
+
+#listeners ul {
+	margin-left: 150px;
+	list-style-type: decimal;
+}
