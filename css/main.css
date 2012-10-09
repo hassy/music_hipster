@@ -26,3 +26,11 @@ a:hover {color:#83be20;}
 .centered {
     text-align: center;
 }
+
+#score {
+	display: none;
+    margin-top: 35px;
+    font-family: Univers;
+    font-size: 48pt;
+    color: #c0c;
+}
