@@ -22,3 +22,7 @@ p {
 
 h1, ul {margin:0 0 30px;}
 a:hover {color:#83be20;}
+
+.centered {
+    text-align: center;
+}
