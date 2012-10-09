@@ -11,5 +11,9 @@ window.onload = function() {
     sp = getSpotifyApi(1);
     var models = sp.require("sp://import/scripts/api/models");
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
+
+    $("#judgeMeButton").click(function() {
+        console.info("judging...");
+    });
 }
 
