@@ -6,6 +6,7 @@ h1, h2, h3 {
 	font-family: "Comic Sans Ms";
 	color: #c0c;
 	text-align: center;
+	line-height: 100%;
 }
 
 h1 {
@@ -27,6 +28,16 @@ a:hover {color:#83be20;}
     text-align: center;
 }
 
+table#content {
+    width: 100%;
+    margin: 20px auto 0 auto;
+    display: none;
+}
+
+.hipsterImg {
+	display: none;
+}
+
 #score {
 	display: none;
     margin-top: 35px;
@@ -41,6 +52,6 @@ a:hover {color:#83be20;}
 }
 
 #listeners ul {
-	margin-left: 150px;
+	margin-left: 60px;
 	list-style-type: decimal;
 }

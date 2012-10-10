@@ -1,6 +1,24 @@
 var sp = getSpotifyApi(1);
 var models = models = sp.require("sp://import/scripts/api/models");
 
+var HIP = [
+    "neutral milk hotel",
+    "elliott smith",
+    "pavement",
+    "dinosaur jr.",
+    "pixies",
+    "talking heads",
+    "death cab for cutie",
+    "my bloody valentine"
+];
+
+var UNHIP = [
+    "justin bieber",
+    "nickelback",
+    "nicki minaj",
+    "britney spears"
+];
+
 window.onload = function() {
     var tabs = function() {
         var args = models.application.arguments;
@@ -14,8 +32,8 @@ window.onload = function() {
 
     $("#judgeMeButton").click(function() {
         var score = calculateScore();
-        $("#score").html(score).show();
-        
+        $("#score").html(score).show().stealthIn();
+
         var top_tracks = models.library.starredPlaylist;
         var songs = _.reduce(_.range(top_tracks.data.length), function(acc, i) { 
                                                                     var track = top_tracks.data.getTrack(i);
@@ -27,7 +45,6 @@ window.onload = function() {
         _.each(songs, function(s) {
             $.getJSON(url+"&artist="+encodeURIComponent(s.artist)+"&track="+encodeURIComponent(s.track), {}, function(json, status) {
                 if(status == "success") {
-                    // update "listening" table and give a score
                     if(!("error" in json)) {
                         var listener_count = Number(json.track.listeners);
                         var listener_score = "Terrible"; // by default
@@ -43,11 +60,14 @@ window.onload = function() {
                         if(listener_count < 200) {
                             listener_score = "<span style='color: blue;'>Amazing, hopefully this band will never go mainstream.</span>";
                         }
+                        $("#content").show();
                         $("#listeners>ul").append("<li>" + s.track + " has " + json.track.listeners + " listeners -- " + listener_score + "</li>");
                         $("#listeners").fadeIn(3000);
+                        $(".hipsterImg").fadeIn(6000);
                     }
                 }
             });
+            // TODO: Check artist against the lists and dispense badges.
         });
     });
 }
@@ -56,24 +76,6 @@ var calculateScore = function() {
     // 1 point for each artist & album -- encourage variety, variety is good
     // 50 extra points for each hip artist -- encourage hip music, hip music is good
     // -100 points for each lame artist -- strongly discourage Bieber etc
-
-    var HIP = [
-        "neutral milk hotel",
-        "elliott smith",
-        "pavement",
-        "dinosaur jr.",
-        "pixies",
-        "talking heads",
-        "death cab for cutie",
-        "my bloody valentine"
-    ];
-
-    var UNHIP = [
-        "justin bieber",
-        "nickelback",
-        "nicki minaj",
-        "britney spears"
-    ];
 
     var albums = models.library.albums;
     var artists = models.library.artists;
@@ -89,4 +91,39 @@ var calculateScore = function() {
                                .intersection(UNHIP).value().length);
 
     return albums.length + artists.length + hip_points + unhip_points;
+}
+
+// http://peterbraden.co.uk/article/cod-text
+$.fn.stealthIn = function(callback) {
+    this.each(function(){
+        
+        var content = $(this).text();
+        $(this).text("").css({
+            'text-shadow' : '#000 0px 0px 5px',
+            }).show();
+        
+        var i = 0;
+        var j = 1;
+        var x = $(this);
+        var t = setInterval(function(){
+            var cont = x.text();
+            
+            if (j==3){  
+                x.text(cont.substr(0,i) + content[i]);
+                i+=1;
+                j=0;
+            }else{
+                x.text(cont.substr(0,i) + String.fromCharCode(
+                    1072 + parseInt(Math.random()*20)));    
+                j+=1;
+            }
+                    
+            if (i == content.length){
+                clearInterval(t);
+                if (callback){
+                    callback();
+                }
+            }   
+        }, 20);
+    });
 }
