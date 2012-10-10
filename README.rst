@@ -10,7 +10,10 @@ Use it to see how to do some of the common tasks in Spotify apps, or to get your
 
 License: MIT (see LICENSE file for details).
 
-TODO: Screenshot
+Screenshot
+----------
+
+.. image:: ./img/screenshot.png
 
 Install
 -------
