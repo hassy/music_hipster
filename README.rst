@@ -8,7 +8,7 @@ Music Hipster is a Spotify app originally built for a talk at `Edinburgh Techmee
 
 Use it to see how to do some of the common tasks in Spotify apps, or to get your own Music Hipster Score.
 
-License: MIT (see LICENSE file for details).
+License: MIT for all code (see LICENSE file for details), but not the images.
 
 Screenshot
 ----------
