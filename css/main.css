@@ -55,3 +55,8 @@ table#content {
 	margin-left: 60px;
 	list-style-type: decimal;
 }
+
+#badges {
+	display: none;
+	text-align: center;
+}

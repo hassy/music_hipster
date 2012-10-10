@@ -19,6 +19,8 @@ var UNHIP = [
     "britney spears"
 ];
 
+var TOP_SCORE = 2000;
+
 window.onload = function() {
     var tabs = function() {
         var args = models.application.arguments;
@@ -32,7 +34,7 @@ window.onload = function() {
 
     $("#judgeMeButton").click(function() {
         var score = calculateScore();
-        $("#score").html(score).show().stealthIn();
+        $("#score").html(score + " / " + TOP_SCORE).show().stealthIn();
 
         var top_tracks = models.library.starredPlaylist;
         var songs = _.reduce(_.range(top_tracks.data.length), function(acc, i) { 
@@ -62,8 +64,9 @@ window.onload = function() {
                         }
                         $("#content").show();
                         $("#listeners>ul").append("<li>" + s.track + " has " + json.track.listeners + " listeners -- " + listener_score + "</li>");
-                        $("#listeners").fadeIn(3000);
-                        $(".hipsterImg").fadeIn(6000);
+                        $("#listeners").fadeIn(4000);
+                        $(".hipsterImg").fadeIn(8000);
+                        $("#badges").fadeIn(8000);
                     }
                 }
             });
