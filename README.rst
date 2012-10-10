@@ -13,7 +13,7 @@ License: MIT (see LICENSE file for details).
 Screenshot
 ----------
 
-.. image:: ./img/screenshot.png
+.. image:: ./music_hipster/img/screenshot.png
 
 Install
 -------
